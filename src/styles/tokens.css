@@ -18,8 +18,9 @@
 /* Design Tokens */
 :root {
   /* Typography */
-  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, "SF Mono", Menlo,
-    Consolas, monospace;
+  --font-mono:
+    "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    monospace;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
   --font-size-lg: 1.25rem;
@@ -34,8 +35,8 @@
   --color-border: #2a2a2a;
   --color-text: #e0e0e0;
   --color-text-muted: #888;
-  --color-accent: #00ff88;
-  --color-accent-dim: #00cc6a;
+  --color-accent: #f26419;
+  --color-accent-dim: #d95314;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -61,8 +62,8 @@
   --color-border: #e0e0e0;
   --color-text: #1a1a1a;
   --color-text-muted: #666;
-  --color-accent: #00a858;
-  --color-accent-dim: #008a48;
+  --color-accent: #f26419;
+  --color-accent-dim: #d95314;
 }
 
 /* Reset */
