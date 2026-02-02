@@ -1,0 +1,44 @@
+---
+title: "Palm Toast"
+description: "A lightweight toast notification library for web applications."
+tech: ["TypeScript", "CSS", "Vite", "NPM"]
+github: "https://github.com/JonasPalms/palm-toast"
+live: "https://jonaspalms.github.io/palm-toast/demo/"
+date: 2025-06-01
+featured: true
+---
+
+## About
+
+A minimal toast notification library — no dependencies, just drop it in and go. Built because most toast libraries are either too heavy or too opinionated.
+
+## Features
+
+- **Simple API** — One function to show a toast
+- **Customizable** — Duration, position, custom classes
+- **Stackable** — Multiple toasts at once without fighting each other
+- **Tiny footprint** — Just TypeScript and CSS
+
+## Usage
+
+```bash
+npm install palm-toast
+```
+
+```typescript
+import { Toast } from "palm-toast"
+
+const toast = new Toast()
+toast.showToast("Hello, world!")
+
+// With options
+toast.showToast("Saved!", {
+  duration: 3000,
+  position: "top-right",
+  className: "success-toast",
+})
+```
+
+## Why Build This
+
+Sometimes you just need a toast. Most libraries come with React dependencies, complex theming systems, or bundle sizes that dwarf the actual feature. This one doesn't.
