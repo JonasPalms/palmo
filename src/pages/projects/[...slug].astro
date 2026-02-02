@@ -1,0 +1,210 @@
+---
+import { getCollection, render } from "astro:content"
+import Base from "../../layouts/Base.astro"
+import Nav from "../../components/Nav.astro"
+import BlinkingCaret from "../../components/BlinkingCaret.astro"
+import TechBadge from "../../components/TechBadge.astro"
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects")
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }))
+}
+
+const { project } = Astro.props
+const { Content } = await render(project)
+
+const formattedDate = project.data.date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+})
+---
+
+<Base title={`${project.data.title} — Jonas Palm`} description={project.data.description}>
+  <div class="container">
+    <Nav />
+
+    <main>
+      <article class="project">
+        <!-- Header -->
+        <header class="project-header">
+          <a href="/" class="back-link">&larr; Back to home</a>
+          <h1 class="project-title">
+            {project.data.title}<BlinkingCaret />
+          </h1>
+          <p class="project-description">{project.data.description}</p>
+
+          <div class="project-meta">
+            <time datetime={project.data.date.toISOString()}>{formattedDate}</time>
+            <div class="tech-list">
+              {project.data.tech.map((t) => <TechBadge tech={t} />)}
+            </div>
+          </div>
+
+          <div class="project-links">
+            {
+              project.data.github && (
+                <a href={project.data.github} target="_blank" rel="noopener">
+                  View on GitHub &rarr;
+                </a>
+              )
+            }
+            {
+              project.data.live && (
+                <a href={project.data.live} target="_blank" rel="noopener">
+                  Live Demo &rarr;
+                </a>
+              )
+            }
+          </div>
+        </header>
+
+        <!-- Content -->
+        <div class="project-content">
+          <Content />
+        </div>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; {new Date().getFullYear()} Jonas Palm</p>
+    </footer>
+  </div>
+</Base>
+
+<style>
+  main {
+    min-height: calc(100vh - 200px);
+  }
+
+  .project {
+    padding-bottom: var(--space-2xl);
+  }
+
+  /* Header */
+  .project-header {
+    padding: var(--space-lg) 0 var(--space-xl);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-xl);
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+  }
+
+  .back-link:hover {
+    color: var(--color-accent);
+  }
+
+  .project-title {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+  }
+
+  .project-description {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+    max-width: 40rem;
+  }
+
+  .project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .project-meta time {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  .tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .project-links {
+    display: flex;
+    gap: var(--space-lg);
+  }
+
+  .project-links a {
+    font-size: var(--font-size-sm);
+  }
+
+  /* Content */
+  .project-content {
+    max-width: 48rem;
+  }
+
+  .project-content :global(h2) {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
+  }
+
+  .project-content :global(h3) {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-sm);
+  }
+
+  .project-content :global(p) {
+    margin-bottom: var(--space-md);
+    color: var(--color-text);
+  }
+
+  .project-content :global(ul),
+  .project-content :global(ol) {
+    margin-bottom: var(--space-md);
+    padding-left: var(--space-lg);
+  }
+
+  .project-content :global(li) {
+    margin-bottom: var(--space-xs);
+    color: var(--color-text);
+  }
+
+  .project-content :global(pre) {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+    overflow-x: auto;
+    margin-bottom: var(--space-md);
+  }
+
+  .project-content :global(code) {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+  }
+
+  .project-content :global(img) {
+    border-radius: var(--radius);
+    margin: var(--space-lg) 0;
+    border: 1px solid var(--color-border);
+  }
+
+  /* Footer */
+  .footer {
+    padding: var(--space-lg) 0;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+</style>

@@ -1,0 +1,131 @@
+---
+import Base from "../layouts/Base.astro"
+import Nav from "../components/Nav.astro"
+import BlinkingCaret from "../components/BlinkingCaret.astro"
+---
+
+<Base title="Contact — Jonas Palm" description="Get in touch with Jonas Palm">
+  <div class="container">
+    <Nav />
+
+    <main>
+      <section class="contact">
+        <h1 class="contact-title">
+          Contact<BlinkingCaret />
+        </h1>
+        <p class="contact-intro">
+          Want to work together, have a question, or just want to say hi? Feel free to reach out
+          through any of the channels below.
+        </p>
+
+        <div class="contact-methods">
+          <a href="mailto:hello@example.com" class="contact-card">
+            <span class="contact-label">Email</span>
+            <span class="contact-value">hello@example.com</span>
+          </a>
+
+          <a href="https://github.com/username" target="_blank" rel="noopener" class="contact-card">
+            <span class="contact-label">GitHub</span>
+            <span class="contact-value">@username</span>
+          </a>
+
+          <a
+            href="https://linkedin.com/in/username"
+            target="_blank"
+            rel="noopener"
+            class="contact-card"
+          >
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-value">/in/username</span>
+          </a>
+        </div>
+
+        <p class="contact-note">
+          I typically respond within a few days. Looking forward to hearing from you!
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; {new Date().getFullYear()} Jonas Palm</p>
+    </footer>
+  </div>
+</Base>
+
+<style>
+  main {
+    min-height: calc(100vh - 200px);
+  }
+
+  .contact {
+    padding: var(--space-xl) 0 var(--space-2xl);
+    max-width: 40rem;
+  }
+
+  .contact-title {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+  }
+
+  .contact-intro {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xl);
+    font-size: var(--font-size-lg);
+  }
+
+  .contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+  }
+
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding: var(--space-lg);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition:
+      border-color var(--transition-fast),
+      transform var(--transition-fast);
+  }
+
+  .contact-card:hover {
+    border-color: var(--color-accent);
+    transform: translateX(4px);
+    text-decoration: none;
+  }
+
+  .contact-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .contact-value {
+    font-size: var(--font-size-lg);
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  .contact-note {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    font-style: italic;
+  }
+
+  /* Footer */
+  .footer {
+    padding: var(--space-lg) 0;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+</style>

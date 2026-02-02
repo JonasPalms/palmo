@@ -1,0 +1,125 @@
+<button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+  <span class="icon-wrapper">
+    <span class="icon icon-moon" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path
+          fill="currentColor"
+          d="M12 22c5.523 0 10-4.477 10-10c0-.463-.694-.54-.933-.143a6.5 6.5 0 1 1-8.924-8.924C12.54 2.693 12.463 2 12 2C6.477 2 2 6.477 2 12s4.477 10 10 10"
+        ></path>
+      </svg>
+    </span>
+    <span class="icon icon-sun" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path fill="currentColor" d="M17 12a5 5 0 1 1-10 0a5 5 0 0 1 10 0"></path>
+        <path
+          fill="currentColor"
+          fill-rule="evenodd"
+          d="M12 1.25a.75.75 0 0 1 .75.75v2a.75.75 0 0 1-1.5 0V2a.75.75 0 0 1 .75-.75M3.669 3.716a.75.75 0 0 1 1.06-.047L6.95 5.7a.75.75 0 1 1-1.012 1.107L3.716 4.776a.75.75 0 0 1-.047-1.06m16.662 0a.75.75 0 0 1-.047 1.06l-2.222 2.031A.75.75 0 0 1 17.05 5.7l2.222-2.031a.75.75 0 0 1 1.06.047M1.25 12a.75.75 0 0 1 .75-.75h2a.75.75 0 0 1 0 1.5H2a.75.75 0 0 1-.75-.75m18 0a.75.75 0 0 1 .75-.75h2a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1-.75-.75m-2.224 5.025a.75.75 0 0 1 1.06 0l2.222 2.223a.75.75 0 0 1-1.06 1.06l-2.222-2.222a.75.75 0 0 1 0-1.06m-10.051 0a.75.75 0 0 1 0 1.061l-2.223 2.222a.75.75 0 0 1-1.06-1.06l2.222-2.223a.75.75 0 0 1 1.06 0M12 19.25a.75.75 0 0 1 .75.75v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 1 .75-.75"
+          clip-rule="evenodd"></path>
+      </svg>
+    </span>
+  </span>
+</button>
+
+<script>
+  function initTheme() {
+    const toggle = document.getElementById("theme-toggle")
+    if (!toggle) return
+
+    function getTheme(): "dark" | "light" {
+      const stored = localStorage.getItem("theme")
+      if (stored === "dark" || stored === "light") return stored
+      return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"
+    }
+
+    function setTheme(theme: "dark" | "light") {
+      document.documentElement.setAttribute("data-theme", theme)
+      localStorage.setItem("theme", theme)
+    }
+
+    // Set initial theme (already done in head, but sync button state)
+    const currentTheme = getTheme()
+    document.documentElement.setAttribute("data-theme", currentTheme)
+
+    toggle.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme")
+      const next = current === "dark" ? "light" : "dark"
+      setTheme(next)
+    })
+
+    window.matchMedia("(prefers-color-scheme: light)").addEventListener("change", (e) => {
+      if (!localStorage.getItem("theme")) {
+        setTheme(e.matches ? "light" : "dark")
+      }
+    })
+  }
+
+  initTheme()
+
+  document.addEventListener("astro:after-swap", initTheme)
+</script>
+
+<style>
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    color: var(--color-text-muted);
+    overflow: hidden;
+    transition:
+      color var(--transition-fast),
+      border-color var(--transition-fast);
+  }
+
+  .theme-toggle:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .icon-wrapper {
+    position: relative;
+    width: 18px;
+    height: 18px;
+  }
+
+  .icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      transform 400ms cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 300ms ease;
+  }
+
+  /* Dark mode: moon centered, sun off to the left */
+  .icon-moon {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+
+  .icon-sun {
+    opacity: 0;
+    transform: translateX(-16px) translateY(4px);
+  }
+
+  /* Light mode: sun centered, moon off to the right */
+  :global([data-theme="light"]) .icon-moon {
+    opacity: 0;
+    transform: translateX(16px) translateY(4px);
+  }
+
+  :global([data-theme="light"]) .icon-sun {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+</style>

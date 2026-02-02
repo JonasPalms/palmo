@@ -1,0 +1,77 @@
+---
+import ThemeToggle from "./ThemeToggle.astro"
+
+const currentPath = Astro.url.pathname
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/contact", label: "Contact" },
+]
+---
+
+<nav class="nav">
+  <a href="/" class="logo">palmo</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.href} class:list={["nav-link", { active: currentPath === link.href }]}>
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <ThemeToggle />
+  </div>
+</nav>
+
+<style>
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-xl);
+  }
+
+  .logo {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  .logo:hover {
+    text-decoration: none;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: var(--space-lg);
+    list-style: none;
+  }
+
+  .nav-link {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast);
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .nav-link.active {
+    color: var(--color-accent);
+  }
+</style>

@@ -1,0 +1,26 @@
+---
+interface Props {
+  as?: "div" | "article" | "section"
+  class?: string
+}
+
+const { as: Element = "div", class: className } = Astro.props
+---
+
+<Element class:list={["card", className]}>
+  <slot />
+</Element>
+
+<style>
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-lg);
+    transition: border-color var(--transition-fast);
+  }
+
+  .card:hover {
+    border-color: var(--color-text-muted);
+  }
+</style>
