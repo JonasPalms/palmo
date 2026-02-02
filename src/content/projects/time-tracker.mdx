@@ -1,0 +1,36 @@
+---
+title: "Time Tracker"
+description: "A lightweight, cross-platform time tracking desktop app built with Svelte and Tauri."
+tech: ["Svelte", "TypeScript", "Tauri", "Rust", "SQLite"]
+github: "https://github.com/JonasPalms/time-tracker"
+date: 2026-02-02
+cover: "./time-tracker/cover.png"
+featured: true
+---
+
+## About
+
+A native desktop app for tracking time — built for developers who want something fast, minimal, and local-first. No cloud accounts, no subscriptions, just a clean timer that stays out of your way.
+
+## Features
+
+- **Start/stop timer** with real-time display
+- **Session history** to review what you've worked on
+- **Local SQLite database** — your data stays on your machine
+- **Dark/light mode** with a clean, minimal UI
+- **Favorites** for quick time entry on recurring tasks
+- **Keyboard shortcuts** for power users
+- **Auto-updates** on macOS
+
+## Tech Stack
+
+The app is built with **Tauri** — a Rust-based alternative to Electron that produces tiny, fast binaries. The frontend is **Svelte** for its simplicity and performance. Data is stored locally in **SQLite**.
+
+Why Tauri over Electron? The final binary is ~10MB instead of 150MB+, and it uses native webviews instead of bundling Chromium. Feels snappier, uses less memory.
+
+## What I Learned
+
+- Building cross-platform desktop apps with Tauri
+- Rust basics for the backend/system layer
+- SQLite for local-first data persistence
+- Auto-update distribution for macOS apps
