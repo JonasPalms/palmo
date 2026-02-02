@@ -1,0 +1,153 @@
+---
+/**
+ * Typewriter with human-like typo correction
+ *
+ * segments: Array of typing actions
+ *   - type: text to type
+ *   - pause?: ms to pause after typing (default: 0)
+ *   - delete?: number of characters to delete after pause (default: 0)
+ *
+ * Example: "jonad pa" -> delete 4 -> "s palm" = "jonas palm"
+ * segments={[
+ *   { type: "jonad pa", pause: 400, delete: 4 },
+ *   { type: "s palm" }
+ * ]}
+ */
+interface Segment {
+  type: string
+  pause?: number
+  delete?: number
+}
+
+type Props = {
+  segments: Segment[]
+  speed?: number
+  deleteSpeed?: number
+  initialDelay?: number
+  caret?: boolean
+  class?: string
+}
+
+const {
+  segments,
+  speed = 100,
+  deleteSpeed = 50,
+  initialDelay = 500,
+  caret = false,
+  class: className,
+} = Astro.props
+---
+
+<span
+  class:list={["typewriter", { "with-caret": caret }, className]}
+  data-segments={JSON.stringify(segments)}
+  data-speed={speed}
+  data-delete-speed={deleteSpeed}
+  data-initial-delay={initialDelay}></span>
+
+<script>
+  interface Segment {
+    type: string
+    pause?: number
+    delete?: number
+  }
+
+  function initTypewriters() {
+    const typewriters = document.querySelectorAll(".typewriter")
+
+    typewriters.forEach((el) => {
+      const element = el as HTMLElement
+      const segments: Segment[] = JSON.parse(element.dataset.segments || "[]")
+      const speed = parseInt(element.dataset.speed || "80", 10)
+      const deleteSpeed = parseInt(element.dataset.deleteSpeed || "50", 10)
+      const initialDelay = parseInt(element.dataset.initialDelay || "200", 10)
+
+      // Reset
+      element.textContent = ""
+
+      let currentText = ""
+      let segmentIndex = 0
+      let charIndex = 0
+      let isDeleting = false
+      let deleteCount = 0
+
+      function tick() {
+        if (segmentIndex >= segments.length) return
+
+        const segment = segments[segmentIndex]
+
+        if (!isDeleting) {
+          // Typing
+          if (charIndex < segment.type.length) {
+            currentText += segment.type.charAt(charIndex)
+            element.textContent = currentText
+            charIndex++
+            setTimeout(tick, speed + Math.random() * 40) // slight randomness
+          } else {
+            // Finished typing this segment
+            if (segment.delete && segment.delete > 0) {
+              // Need to delete some chars
+              deleteCount = segment.delete
+              isDeleting = true
+              setTimeout(tick, segment.pause || 300)
+            } else {
+              // Move to next segment
+              segmentIndex++
+              charIndex = 0
+              if (segment.pause && segment.pause > 0) {
+                setTimeout(tick, segment.pause)
+              } else {
+                tick()
+              }
+            }
+          }
+        } else {
+          // Deleting
+          if (deleteCount > 0) {
+            currentText = currentText.slice(0, -1)
+            element.textContent = currentText
+            deleteCount--
+            setTimeout(tick, deleteSpeed)
+          } else {
+            // Done deleting, move to next segment
+            isDeleting = false
+            segmentIndex++
+            charIndex = 0
+            setTimeout(tick, 100) // small pause before continuing
+          }
+        }
+      }
+
+      // Start after initial delay
+      setTimeout(tick, initialDelay)
+    })
+  }
+
+  // Run on initial load
+  initTypewriters()
+
+  // Re-run on view transitions
+  document.addEventListener("astro:after-swap", initTypewriters)
+</script>
+
+<style>
+  .typewriter {
+    display: inline;
+  }
+
+  .with-caret::after {
+    content: "_";
+    color: var(--color-accent);
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+</style>

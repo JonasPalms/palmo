@@ -2,7 +2,8 @@
 import { getCollection } from "astro:content"
 import Base from "../layouts/Base.astro"
 import Nav from "../components/Nav.astro"
-import BlinkingCaret from "../components/BlinkingCaret.astro"
+import Footer from "../components/Footer.astro"
+import TypewriterText from "../components/TypewriterText.astro"
 import ProjectCard from "../components/ProjectCard.astro"
 
 const projects = await getCollection("projects")
@@ -19,16 +20,21 @@ const featuredProjects = projects
       <!-- Hero / About Section -->
       <section class="hero">
         <h1 class="hero-title">
-          jonas palm<BlinkingCaret />
+          <TypewriterText
+            segments={[{ type: "jonad pa", pause: 500, delete: 4 }, { type: "s palm" }]}
+            caret
+          />
         </h1>
-        <p class="hero-subtitle">Frontend Developer</p>
+        <p class="hero-subtitle">Web Developer</p>
         <p class="hero-bio">
           I build things for the web. Focused on creating polished, performant user interfaces and
           enjoyable developer experiences.
         </p>
         <div class="hero-links">
-          <a href="https://github.com/username" target="_blank" rel="noopener"> GitHub </a>
-          <a href="https://linkedin.com/in/username" target="_blank" rel="noopener"> LinkedIn </a>
+          <a href="https://github.com/jonaspalmsorensen" target="_blank" rel="noopener"> GitHub </a>
+          <a href="https://www.linkedin.com/in/jonaspalmsorensen/" target="_blank" rel="noopener">
+            LinkedIn
+          </a>
           <a href="/contact">Contact</a>
         </div>
       </section>
@@ -70,9 +76,7 @@ const featuredProjects = projects
       </section>
     </main>
 
-    <footer class="footer">
-      <p>&copy; {new Date().getFullYear()} Jonas Palm</p>
-    </footer>
+    <Footer />
   </div>
 </Base>
 
@@ -180,13 +184,5 @@ const featuredProjects = projects
   .no-projects {
     color: var(--color-text-muted);
     font-style: italic;
-  }
-
-  /* Footer */
-  .footer {
-    padding: var(--space-lg) 0;
-    border-top: 1px solid var(--color-border);
-    color: var(--color-text-muted);
-    font-size: var(--font-size-sm);
   }
 </style>
