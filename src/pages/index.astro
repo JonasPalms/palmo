@@ -12,7 +12,7 @@ const featuredProjects = projects
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 ---
 
-<Base title="Jonas Palm — Frontend Developer">
+<Base title="Jonas Palm | Web Developer">
   <!-- Hero / About Section -->
   <section class="hero">
     <div class="hero-content">
@@ -29,7 +29,7 @@ const featuredProjects = projects
           enjoyable developer experiences.
         </p>
         <div class="hero-links">
-          <a href="https://github.com/jonaspalmsorensen" target="_blank" rel="noopener"> GitHub </a>
+          <a href="https://github.com/jonaspalms" target="_blank" rel="noopener"> GitHub </a>
           <a href="https://www.linkedin.com/in/jonaspalmsorensen/" target="_blank" rel="noopener">
             LinkedIn
           </a>
@@ -44,165 +44,161 @@ const featuredProjects = projects
         decoding="async"
       />
     </div>
-    <!-- Work Section -->
-
-    <section class="work">
-      <h2 class="section-title">Work</h2>
-      <div class="work-item">
-        <div class="work-header">
-          <h3 class="work-company">Apply Agency</h3>
-          <span class="work-period">2022 — Present</span>
-        </div>
-        <p class="work-role">Frontend Developer</p>
-        <p class="work-description">
-          Building modern web experiences for clients across various industries.
-        </p>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects">
-      <h2 class="section-title">Projects</h2>
-      {
-        featuredProjects.length > 0 ? (
-          <div class="project-grid">
-            {featuredProjects.map((project) => (
-              <ProjectCard
-                title={project.data.title}
-                description={project.data.description}
-                slug={project.id}
-                tech={project.data.tech}
-              />
-            ))}
-          </div>
-        ) : (
-          <p class="no-projects">Projects coming soon...</p>
-        )
-      }
-    </section>
   </section>
 
-  <style>
-    /* Hero Section */
-    .hero {
-      padding: var(--space-xl) 0 var(--space-2xl);
+  <section class="work">
+    <h2 class="section-title">Work</h2>
+    <div class="work-item">
+      <div class="work-header">
+        <h3 class="work-company">Apply Agency</h3>
+        <span class="work-period">2022 — Present</span>
+      </div>
+      <p class="work-role">Frontend Developer</p>
+      <p class="work-description">
+        Building modern web experiences for clients across various industries. I do everything from
+        classic content-heavy MVC based websites with .NET to modern web apps using React and
+        Next.js.
+      </p>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="projects">
+    <h2 class="section-title">Projects</h2>
+    {
+      featuredProjects.length > 0 ? (
+        <div class="project-grid">
+          {featuredProjects.map((project) => (
+            <ProjectCard
+              title={project.data.title}
+              description={project.data.description}
+              slug={project.id}
+              tech={project.data.tech}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="no-projects">Projects coming soon...</p>
+      )
     }
 
-    .hero-title {
-      font-size: var(--font-size-3xl);
-      font-weight: 700;
-      color: var(--color-text);
-      margin-bottom: var(--space-sm);
-    }
-
-    .hero-portrait {
-      align-self: center;
-    }
-
-    .hero-content {
-      display: grid;
-      align-items: center;
-      grid-template-columns: 2fr minmax(140px, 1fr);
-      gap: var(--space-lg);
-      margin-bottom: var(--space-sm);
-    }
-    .hero-subtitle {
-      font-size: var(--font-size-lg);
-      color: var(--color-text-muted);
-      margin-bottom: var(--space-lg);
-    }
-
-    .hero-bio {
-      max-width: 40rem;
-      color: var(--color-text);
-      margin-bottom: var(--space-lg);
-    }
-
-    .hero-links {
-      display: flex;
-      gap: var(--space-lg);
-    }
-
-    .hero-links a {
-      font-size: var(--font-size-sm);
-    }
-
-    @media (max-width: 720px) {
-      .hero-content {
+    <style>
+      .hero-title {
+        font-size: var(--font-size-3xl);
+        font-weight: 700;
+        color: var(--color-text);
         margin-bottom: var(--space-sm);
       }
 
       .hero-portrait {
-        display: none;
+        align-self: center;
       }
-    }
 
-    /* Work Section */
-    .work {
-      padding-bottom: var(--space-2xl);
-    }
+      .hero-content {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 2fr minmax(140px, 1fr);
+        gap: var(--space-lg);
+        margin-bottom: var(--space-sm);
+      }
+      .hero-subtitle {
+        font-size: var(--font-size-lg);
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-lg);
+      }
 
-    .work-item {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius);
-      padding: var(--space-lg);
-    }
+      .hero-bio {
+        max-width: 40rem;
+        color: var(--color-text);
+        margin-bottom: var(--space-lg);
+      }
 
-    .work-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: var(--space-sm);
-      margin-bottom: var(--space-xs);
-    }
+      .hero-links {
+        display: flex;
+        gap: var(--space-lg);
+      }
 
-    .work-company {
-      font-size: var(--font-size-lg);
-      font-weight: 600;
-      color: var(--color-text);
-    }
+      .hero-links a {
+        font-size: var(--font-size-sm);
+      }
 
-    .work-period {
-      font-size: var(--font-size-sm);
-      color: var(--color-text-muted);
-    }
+      @media (max-width: 720px) {
+        .hero-content {
+          margin-bottom: var(--space-sm);
+        }
 
-    .work-role {
-      font-size: var(--font-size-base);
-      color: var(--color-accent);
-      margin-bottom: var(--space-sm);
-    }
+        .hero-portrait {
+          display: none;
+        }
+      }
 
-    .work-description {
-      font-size: var(--font-size-sm);
-      color: var(--color-text-muted);
-    }
+      /* Work Section */
+      .work {
+        padding-bottom: var(--space-2xl);
+      }
 
-    /* Projects Section */
-    .projects {
-      padding-bottom: var(--space-2xl);
-    }
+      .work-item {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: var(--space-lg);
+      }
 
-    .section-title {
-      font-size: var(--font-size-xl);
-      font-weight: 600;
-      color: var(--color-text);
-      margin-bottom: var(--space-lg);
-      padding-bottom: var(--space-sm);
-      border-bottom: 1px solid var(--color-border);
-    }
+      .work-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        margin-bottom: var(--space-xs);
+      }
 
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: var(--space-lg);
-    }
+      .work-company {
+        font-size: var(--font-size-lg);
+        font-weight: 600;
+        color: var(--color-text);
+      }
 
-    .no-projects {
-      color: var(--color-text-muted);
-      font-style: italic;
-    }
-  </style>
+      .work-period {
+        font-size: var(--font-size-sm);
+        color: var(--color-text-muted);
+      }
+
+      .work-role {
+        font-size: var(--font-size-base);
+        color: var(--color-accent);
+        margin-bottom: var(--space-sm);
+      }
+
+      .work-description {
+        font-size: var(--font-size-sm);
+        color: var(--color-text-muted);
+      }
+
+      /* Projects Section */
+      .projects {
+        padding-bottom: var(--space-2xl);
+      }
+
+      .section-title {
+        font-size: var(--font-size-xl);
+        font-weight: 600;
+        color: var(--color-text);
+        margin-bottom: var(--space-lg);
+        padding-bottom: var(--space-sm);
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: var(--space-lg);
+      }
+
+      .no-projects {
+        color: var(--color-text-muted);
+        font-style: italic;
+      }
+    </style>
+  </section>
 </Base>
