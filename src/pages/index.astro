@@ -1,8 +1,6 @@
 ---
 import { getCollection } from "astro:content"
 import Base from "../layouts/Base.astro"
-import Nav from "../components/Nav.astro"
-import Footer from "../components/Footer.astro"
 import TypewriterText from "../components/TypewriterText.astro"
 import ProjectCard from "../components/ProjectCard.astro"
 
@@ -13,78 +11,66 @@ const featuredProjects = projects
 ---
 
 <Base title="Jonas Palm — Frontend Developer">
-  <div class="container">
-    <Nav />
+  <!-- Hero / About Section -->
+  <section class="hero">
+    <h1 class="hero-title">
+      <TypewriterText
+        segments={[{ type: "jonad pa", pause: 500, delete: 4 }, { type: "s palm" }]}
+        caret
+      />
+    </h1>
+    <p class="hero-subtitle">Web Developer</p>
+    <p class="hero-bio">
+      I build things for the web. Focused on creating polished, performant user interfaces and
+      enjoyable developer experiences.
+    </p>
+    <div class="hero-links">
+      <a href="https://github.com/jonaspalmsorensen" target="_blank" rel="noopener"> GitHub </a>
+      <a href="https://www.linkedin.com/in/jonaspalmsorensen/" target="_blank" rel="noopener">
+        LinkedIn
+      </a>
+      <a href="/contact">Contact</a>
+    </div>
+  </section>
 
-    <main>
-      <!-- Hero / About Section -->
-      <section class="hero">
-        <h1 class="hero-title">
-          <TypewriterText
-            segments={[{ type: "jonad pa", pause: 500, delete: 4 }, { type: "s palm" }]}
-            caret
-          />
-        </h1>
-        <p class="hero-subtitle">Web Developer</p>
-        <p class="hero-bio">
-          I build things for the web. Focused on creating polished, performant user interfaces and
-          enjoyable developer experiences.
-        </p>
-        <div class="hero-links">
-          <a href="https://github.com/jonaspalmsorensen" target="_blank" rel="noopener"> GitHub </a>
-          <a href="https://www.linkedin.com/in/jonaspalmsorensen/" target="_blank" rel="noopener">
-            LinkedIn
-          </a>
-          <a href="/contact">Contact</a>
+  <!-- Work Section -->
+  <section class="work">
+    <h2 class="section-title">Work</h2>
+    <div class="work-item">
+      <div class="work-header">
+        <h3 class="work-company">Apply Agency</h3>
+        <span class="work-period">2022 — Present</span>
+      </div>
+      <p class="work-role">Frontend Developer</p>
+      <p class="work-description">
+        Building modern web experiences for clients across various industries.
+      </p>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="projects">
+    <h2 class="section-title">Projects</h2>
+    {
+      featuredProjects.length > 0 ? (
+        <div class="project-grid">
+          {featuredProjects.map((project) => (
+            <ProjectCard
+              title={project.data.title}
+              description={project.data.description}
+              slug={project.id}
+              tech={project.data.tech}
+            />
+          ))}
         </div>
-      </section>
-
-      <!-- Work Section -->
-      <section class="work">
-        <h2 class="section-title">Work</h2>
-        <div class="work-item">
-          <div class="work-header">
-            <h3 class="work-company">Apply Agency</h3>
-            <span class="work-period">2022 — Present</span>
-          </div>
-          <p class="work-role">Frontend Developer</p>
-          <p class="work-description">
-            Building modern web experiences for clients across various industries.
-          </p>
-        </div>
-      </section>
-
-      <!-- Projects Section -->
-      <section class="projects">
-        <h2 class="section-title">Projects</h2>
-        {
-          featuredProjects.length > 0 ? (
-            <div class="project-grid">
-              {featuredProjects.map((project) => (
-                <ProjectCard
-                  title={project.data.title}
-                  description={project.data.description}
-                  slug={project.id}
-                  tech={project.data.tech}
-                />
-              ))}
-            </div>
-          ) : (
-            <p class="no-projects">Projects coming soon...</p>
-          )
-        }
-      </section>
-    </main>
-
-    <Footer />
-  </div>
+      ) : (
+        <p class="no-projects">Projects coming soon...</p>
+      )
+    }
+  </section>
 </Base>
 
 <style>
-  main {
-    min-height: calc(100vh - 200px);
-  }
-
   /* Hero Section */
   .hero {
     padding: var(--space-xl) 0 var(--space-2xl);

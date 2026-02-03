@@ -2,8 +2,6 @@
 import { getCollection, render } from "astro:content"
 import { Image } from "astro:assets"
 import Base from "../../layouts/Base.astro"
-import Nav from "../../components/Nav.astro"
-import Footer from "../../components/Footer.astro"
 import BlinkingCaret from "../../components/BlinkingCaret.astro"
 import TechBadge from "../../components/TechBadge.astro"
 
@@ -25,73 +23,61 @@ const formattedDate = project.data.date.toLocaleDateString("en-US", {
 ---
 
 <Base title={`${project.data.title} — Jonas Palm`} description={project.data.description}>
-  <div class="container">
-    <Nav />
+  <article class="project">
+    <!-- Header -->
+    <header class="project-header">
+      <a href="/" class="back-link">&larr; Back to home</a>
+      <h1 class="project-title">
+        {project.data.title}<BlinkingCaret />
+      </h1>
+      <p class="project-description">{project.data.description}</p>
 
-    <main>
-      <article class="project">
-        <!-- Header -->
-        <header class="project-header">
-          <a href="/" class="back-link">&larr; Back to home</a>
-          <h1 class="project-title">
-            {project.data.title}<BlinkingCaret />
-          </h1>
-          <p class="project-description">{project.data.description}</p>
+      <div class="project-meta">
+        <time datetime={project.data.date.toISOString()}>{formattedDate}</time>
+        <div class="tech-list">
+          {project.data.tech.map((t) => <TechBadge tech={t} />)}
+        </div>
+      </div>
 
-          <div class="project-meta">
-            <time datetime={project.data.date.toISOString()}>{formattedDate}</time>
-            <div class="tech-list">
-              {project.data.tech.map((t) => <TechBadge tech={t} />)}
-            </div>
-          </div>
-
-          <div class="project-links">
-            {
-              project.data.github && (
-                <a href={project.data.github} target="_blank" rel="noopener">
-                  View on GitHub &rarr;
-                </a>
-              )
-            }
-            {
-              project.data.live && (
-                <a href={project.data.live} target="_blank" rel="noopener">
-                  Live Demo &rarr;
-                </a>
-              )
-            }
-          </div>
-        </header>
-
+      <div class="project-links">
         {
-          project.data.cover && (
-            <div class="project-cover">
-              <Image
-                src={project.data.cover}
-                alt={`${project.data.title} screenshot`}
-                widths={[600, 900, 1200]}
-                sizes="(max-width: 768px) 100vw, 900px"
-              />
-            </div>
+          project.data.github && (
+            <a href={project.data.github} target="_blank" rel="noopener">
+              View on GitHub &rarr;
+            </a>
           )
         }
+        {
+          project.data.live && (
+            <a href={project.data.live} target="_blank" rel="noopener">
+              Live Demo &rarr;
+            </a>
+          )
+        }
+      </div>
+    </header>
 
-        <!-- Content -->
-        <div class="project-content">
-          <Content />
+    {
+      project.data.cover && (
+        <div class="project-cover">
+          <Image
+            src={project.data.cover}
+            alt={`${project.data.title} screenshot`}
+            widths={[600, 900, 1200]}
+            sizes="(max-width: 768px) 100vw, 900px"
+          />
         </div>
-      </article>
-    </main>
+      )
+    }
 
-    <Footer />
-  </div>
+    <!-- Content -->
+    <div class="project-content">
+      <Content />
+    </div>
+  </article>
 </Base>
 
 <style>
-  main {
-    min-height: calc(100vh - 200px);
-  }
-
   .project {
     padding-bottom: var(--space-2xl);
   }

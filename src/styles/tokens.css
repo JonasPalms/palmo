@@ -49,6 +49,7 @@
   /* Layout */
   --max-width: 64rem;
   --radius: 4px;
+  --nav-height: 3.5rem;
 
   /* Transitions */
   --transition-fast: 150ms ease;
@@ -92,7 +93,6 @@ body {
   line-height: var(--line-height);
   color: var(--color-text);
   background-color: var(--color-bg);
-  min-height: 100vh;
 }
 
 a {

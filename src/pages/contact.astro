@@ -1,63 +1,44 @@
 ---
 import Base from "../layouts/Base.astro"
-import Nav from "../components/Nav.astro"
-import Footer from "../components/Footer.astro"
 ---
 
 <Base title="Contact — Jonas Palm" description="Get in touch with Jonas Palm">
-  <div class="container">
-    <Nav />
+  <section class="contact">
+    <h1 class="contact-title">Contact</h1>
+    <p class="contact-intro">
+      Want to work together, have a question, or just want to say hi? Feel free to reach out through
+      any of the channels below.
+    </p>
 
-    <main>
-      <section class="contact">
-        <h1 class="contact-title">Contact</h1>
-        <p class="contact-intro">
-          Want to work together, have a question, or just want to say hi? Feel free to reach out
-          through any of the channels below.
-        </p>
+    <div class="contact-methods">
+      <a href="mailto:jonas.p.sorensen@gmail.com" class="contact-card">
+        <span class="contact-label">Email</span>
+        <span class="contact-value">jonas.p.sorensen@gmail.com</span>
+      </a>
 
-        <div class="contact-methods">
-          <a href="mailto:jonas.p.sorensen@gmail.com" class="contact-card">
-            <span class="contact-label">Email</span>
-            <span class="contact-value">jonas.p.sorensen@gmail.com</span>
-          </a>
+      <a href="https://github.com/JonasPalms" target="_blank" rel="noopener" class="contact-card">
+        <span class="contact-label">GitHub</span>
+        <span class="contact-value">@jonaspalmsorensen</span>
+      </a>
 
-          <a
-            href="https://github.com/JonasPalms"
-            target="_blank"
-            rel="noopener"
-            class="contact-card"
-          >
-            <span class="contact-label">GitHub</span>
-            <span class="contact-value">@jonaspalmsorensen</span>
-          </a>
+      <a
+        href="https://www.linkedin.com/in/jonaspalmsorensen/"
+        target="_blank"
+        rel="noopener"
+        class="contact-card"
+      >
+        <span class="contact-label">LinkedIn</span>
+        <span class="contact-value">/in/jonaspalmsorensen</span>
+      </a>
+    </div>
 
-          <a
-            href="https://www.linkedin.com/in/jonaspalmsorensen/"
-            target="_blank"
-            rel="noopener"
-            class="contact-card"
-          >
-            <span class="contact-label">LinkedIn</span>
-            <span class="contact-value">/in/jonaspalmsorensen</span>
-          </a>
-        </div>
-
-        <p class="contact-note">
-          I typically respond within a few days. Looking forward to hearing from you!
-        </p>
-      </section>
-    </main>
-
-    <Footer />
-  </div>
+    <p class="contact-note">
+      I typically respond within a few days. Looking forward to hearing from you!
+    </p>
+  </section>
 </Base>
 
 <style>
-  main {
-    min-height: calc(100vh - 200px);
-  }
-
   .contact {
     padding: var(--space-xl) 0 var(--space-2xl);
     max-width: 40rem;
