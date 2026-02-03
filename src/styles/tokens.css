@@ -1,16 +1,16 @@
 /* Font Face - Variable Fonts */
 @font-face {
-  font-family: "JetBrains Mono";
-  src: url("/fonts/JetBrainsMono[wght].ttf") format("truetype");
-  font-weight: 100 800;
+  font-family: "Sometype Mono";
+  src: url("/fonts/SometypeMono-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "JetBrains Mono";
-  src: url("/fonts/JetBrainsMono-Italic[wght].ttf") format("truetype");
-  font-weight: 100 800;
+  font-family: "Sometype Mono";
+  src: url("/fonts/SometypeMono-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
   font-style: italic;
   font-display: swap;
 }
@@ -19,7 +19,7 @@
 :root {
   /* Typography */
   --font-mono:
-    "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Sometype Mono", "Fira Code", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
     monospace;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
