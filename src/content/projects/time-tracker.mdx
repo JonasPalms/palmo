@@ -10,13 +10,17 @@ featured: true
 
 ## About
 
-A native desktop app for tracking time — built for developers who want something fast, minimal, and local-first. No cloud accounts, no subscriptions, just a clean timer that stays out of your way.
+A native desktop app for tracking time - built for developers who want something fast, minimal, and local-first. No cloud accounts, no subscriptions, just a clean timer that stays out of your way.
+
+## Why I Built It
+
+I wanted a simple timer I could trust to stay local and feel instant. A lot of time trackers are either too heavy, too opinionated, or try to push you into an account/subscription. This is the opposite: quick to open, quick to use, and easy to ignore when you don't need it.
 
 ## Features
 
 - **Start/stop timer** with real-time display
 - **Session history** to review what you've worked on
-- **Local SQLite database** — your data stays on your machine
+- **Local SQLite database** - your data stays on your machine
 - **Dark/light mode** with a clean, minimal UI
 - **Favorites** for quick time entry on recurring tasks
 - **Keyboard shortcuts** for power users
@@ -24,13 +28,10 @@ A native desktop app for tracking time — built for developers who want somethi
 
 ## Tech Stack
 
-The app is built with **Tauri** — a Rust-based alternative to Electron that produces tiny, fast binaries. The frontend is **Svelte** for its simplicity and performance. Data is stored locally in **SQLite**.
+The app is built with **Tauri** - a Rust-based alternative to Electron that produces tiny, fast binaries. The frontend is **Svelte** for its simplicity and performance. Data is stored locally in **SQLite**.
 
 Why Tauri over Electron? The final binary is ~10MB instead of 150MB+, and it uses native webviews instead of bundling Chromium. Feels snappier, uses less memory.
 
-## What I Learned
+## How It's Put Together
 
-- Building cross-platform desktop apps with Tauri
-- Rust basics for the backend/system layer
-- SQLite for local-first data persistence
-- Auto-update distribution for macOS apps
+Tauri provides a small Rust backend for the native bits, while the UI lives in Svelte. Sessions and favorites are persisted in SQLite, so everything works offline and stays on your machine.
