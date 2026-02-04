@@ -7,9 +7,19 @@ import Footer from "../components/Footer.astro"
 interface Props {
   title: string
   description?: string
+  ogImagePath?: string
+  ogType?: "website" | "article"
 }
 
-const { title, description = "Jonas Palm | Web Developer" } = Astro.props
+const {
+  title,
+  description = "Jonas Palm | Web Developer",
+  ogImagePath = "/apple-touch-icon.png",
+  ogType = "website",
+} = Astro.props
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site)
+const ogImageUrl = new URL(ogImagePath, Astro.site)
 ---
 
 <!doctype html>
@@ -31,6 +41,9 @@ const { title, description = "Jonas Palm | Web Developer" } = Astro.props
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <meta name="author" content="Jonas Palm" />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href={canonicalUrl.href} />
 
     <!-- Favicons -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -41,6 +54,18 @@ const { title, description = "Jonas Palm | Web Developer" } = Astro.props
     <meta name="theme-color" content="#0a0a0a" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafafa" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Jonas Palm" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl.href} />
+    <meta property="og:image" content={ogImageUrl.href} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl.href} />
     <title>{title}</title>
 
     <ClientRouter />
