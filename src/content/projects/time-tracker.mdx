@@ -10,11 +10,11 @@ featured: true
 
 ## About
 
-A native desktop app for tracking time - built for developers who want something fast, minimal, and local-first. No cloud accounts, no subscriptions, just a clean timer that stays out of your way.
+A native desktop app for tracking time - fast, minimal, and local-first.
 
 ## Why I Built It
 
-I wanted a simple timer I could trust to stay local and feel instant. A lot of time trackers are either too heavy, too opinionated, or try to push you into an account/subscription. This is the opposite: quick to open, quick to use, and easy to ignore when you don't need it.
+I wanted a simple timer I could trust to stay local and feel instant. Most time trackers feel heavier than they need to be - this one stays out of the way.
 
 ## Features
 
@@ -24,14 +24,11 @@ I wanted a simple timer I could trust to stay local and feel instant. A lot of t
 - **Dark/light mode** with a clean, minimal UI
 - **Favorites** for quick time entry on recurring tasks
 - **Keyboard shortcuts** for power users
-- **Auto-updates** on macOS
 
 ## Tech Stack
 
-The app is built with **Tauri** - a Rust-based alternative to Electron that produces tiny, fast binaries. The frontend is **Svelte** for its simplicity and performance. Data is stored locally in **SQLite**.
-
-Why Tauri over Electron? The final binary is ~10MB instead of 150MB+, and it uses native webviews instead of bundling Chromium. Feels snappier, uses less memory.
+Built with **Tauri** (Rust) + **Svelte**, with data stored locally in **SQLite**.
 
 ## How It's Put Together
 
-Tauri provides a small Rust backend for the native bits, while the UI lives in Svelte. Sessions and favorites are persisted in SQLite, so everything works offline and stays on your machine.
+Tauri handles the native layer, Svelte renders the UI, and SQLite stores sessions and favorites locally.
