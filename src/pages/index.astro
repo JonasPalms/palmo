@@ -4,7 +4,7 @@ import { Image } from "astro:assets"
 import Base from "../layouts/Base.astro"
 import TypewriterText from "../components/TypewriterText.astro"
 import ProjectCard from "../components/ProjectCard.astro"
-import subjectImage from "../assets/Subject.png"
+import subjectImage from "../assets/jonas.png"
 
 const projects = await getCollection("projects")
 const featuredProjects = projects
@@ -36,13 +36,7 @@ const featuredProjects = projects
           <a href="/contact">Contact</a>
         </div>
       </div>
-      <Image
-        class="hero-portrait"
-        src={subjectImage}
-        alt="Portrait"
-        loading="lazy"
-        decoding="async"
-      />
+      <Image src={subjectImage} alt="Portrait" loading="lazy" decoding="async" />
     </div>
   </section>
 
@@ -81,124 +75,123 @@ const featuredProjects = projects
         <p class="no-projects">Projects coming soon...</p>
       )
     }
-
-    <style>
-      .hero-title {
-        font-size: var(--font-size-3xl);
-        font-weight: 700;
-        color: var(--color-text);
-        margin-bottom: var(--space-sm);
-      }
-
-      .hero-portrait {
-        align-self: center;
-      }
-
-      .hero-content {
-        display: grid;
-        align-items: center;
-        grid-template-columns: 2fr minmax(140px, 1fr);
-        gap: var(--space-lg);
-        margin-bottom: var(--space-sm);
-      }
-      .hero-subtitle {
-        font-size: var(--font-size-lg);
-        color: var(--color-text-muted);
-        margin-bottom: var(--space-lg);
-      }
-
-      .hero-bio {
-        max-width: 40rem;
-        color: var(--color-text);
-        margin-bottom: var(--space-lg);
-      }
-
-      .hero-links {
-        display: flex;
-        gap: var(--space-lg);
-      }
-
-      .hero-links a {
-        font-size: var(--font-size-sm);
-      }
-
-      @media (max-width: 720px) {
-        .hero-content {
-          margin-bottom: var(--space-sm);
-        }
-
-        .hero-portrait {
-          display: none;
-        }
-      }
-
-      /* Work Section */
-      .work {
-        padding-bottom: var(--space-2xl);
-      }
-
-      .work-item {
-        background: var(--color-surface);
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius);
-        padding: var(--space-lg);
-      }
-
-      .work-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        flex-wrap: wrap;
-        gap: var(--space-sm);
-        margin-bottom: var(--space-xs);
-      }
-
-      .work-company {
-        font-size: var(--font-size-lg);
-        font-weight: 600;
-        color: var(--color-text);
-      }
-
-      .work-period {
-        font-size: var(--font-size-sm);
-        color: var(--color-text-muted);
-      }
-
-      .work-role {
-        font-size: var(--font-size-base);
-        color: var(--color-accent);
-        margin-bottom: var(--space-sm);
-      }
-
-      .work-description {
-        font-size: var(--font-size-sm);
-        color: var(--color-text-muted);
-      }
-
-      /* Projects Section */
-      .projects {
-        padding-bottom: var(--space-2xl);
-      }
-
-      .section-title {
-        font-size: var(--font-size-xl);
-        font-weight: 600;
-        color: var(--color-text);
-        margin-bottom: var(--space-lg);
-        padding-bottom: var(--space-sm);
-        border-bottom: 1px solid var(--color-border);
-      }
-
-      .project-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: var(--space-lg);
-      }
-
-      .no-projects {
-        color: var(--color-text-muted);
-        font-style: italic;
-      }
-    </style>
   </section>
 </Base>
+
+<style>
+  .hero {
+    margin-top: var(--space-xl);
+  }
+  .hero-title {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+  }
+
+  .hero-content {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-sm);
+  }
+  .hero-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+  }
+
+  .hero-bio {
+    max-width: 40rem;
+    color: var(--color-text);
+    margin-bottom: var(--space-lg);
+  }
+
+  .hero-links {
+    display: flex;
+    gap: var(--space-lg);
+  }
+
+  .hero-links a {
+    font-size: var(--font-size-sm);
+  }
+
+  @media (max-width: 720px) {
+    .hero-content {
+      margin-bottom: var(--space-sm);
+    }
+
+    .hero-portrait {
+      display: none;
+    }
+  }
+
+  /* Work Section */
+  .work {
+    padding-bottom: var(--space-2xl);
+  }
+
+  .work-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-lg);
+  }
+
+  .work-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xs);
+  }
+
+  .work-company {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .work-period {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  .work-role {
+    font-size: var(--font-size-base);
+    color: var(--color-accent);
+    margin-bottom: var(--space-sm);
+  }
+
+  .work-description {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  /* Projects Section */
+  .projects {
+    padding-bottom: var(--space-2xl);
+  }
+
+  .section-title {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .no-projects {
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+</style>
